@@ -1,25 +1,28 @@
 import { number } from 'prop-types';
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { fetchRandom } from '../actions';
+import { fetchRandomNumber } from '../actions';
 
-const From = (props) => {
+const NumbersForm = (props) => {// component stateless
   const [state, setState] = useState();
   const onSubmit = (e) => {
     e.preventDefault();
-    props.dispatch(fetchRandom(state));
+    props.dispatch(fetchRandomNumber(state));
   };
+
   return <div>
     <form onSubmit={onSubmit}>
-      <label htmlFor="list">Ingrese primer numero:</label>
+      <label htmlFor="number1">Ingrese el número mínimo:</label>
       <br />
-      <input id="NumberOne" style={{ width: "300px", height: "120px" }} 
-        onChange={(e) => setState({...state,number1: e.target.value})}
-      ></input>
-        <label htmlFor="list">Ingrese segundo numero:</label>
-      <input id="NumberTwo" style={{ width: "300px", height: "120px" }} 
-        onChange={(e) => setState({...state,number2: e.target.value})}
-      ></input>
+      <input id="number1" type="number" min="0" max="100"
+        onChange={(e) => setState({...state,number1: e.target.value})}>
+      </input>
+      <br/>
+      <label htmlFor="number2">Ingrese el número máximo:</label>
+      <br/>
+      <input id="number2" type="number" min="0" max="100"
+        onChange={(e) => setState({...state,number2: e.target.value})}>
+      </input>
       <br />
       <button type="submit" disabled={props.loading}>
         Enviar
@@ -28,12 +31,12 @@ const From = (props) => {
   </div>
 }
 
-
-const stateMapToPors = state => {
+const stateMapToPros = state => {
   return {
     loading: state.view.loading
   }
 }
 
+export default connect(stateMapToPros)(NumbersForm)
 
-export default connect(stateMapToPors)(From)
+

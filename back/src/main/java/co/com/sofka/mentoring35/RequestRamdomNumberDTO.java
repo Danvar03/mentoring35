@@ -1,17 +1,8 @@
 package co.com.sofka.mentoring35;
 
-public class RequestDTO {
-    private String list;
-  private int number1;
+public class RequestRamdomNumberDTO {
+    private int number1;
   private int number2;
-
-  public String getList() {
-    return list;
-  }
-
-  public void setList(String list) {
-    this.list = list;
-  }
 
   public int getNumber1() {
     return number1;
@@ -29,5 +20,3 @@ public class RequestDTO {
     this.number1 = number1;
   }
 }
-© 2021 GitHub, Inc.
-Ter
